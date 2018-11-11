@@ -3,6 +3,7 @@
 
 #define __STDC_WANT_LIB_EXT1__
 #include <ctype.h>
+#include <math.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
