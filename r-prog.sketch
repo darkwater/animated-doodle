@@ -1,0 +1,65 @@
+nodes: gnd
+
+input: R0 serial
+nodes: gnd, A
+conns: A - R0 - gnd
+
+R1 parallel
+gnd, A
+A - R0 - gnd
+A - R1 - gnd
+
+R2 serial
+gnd, A, B
+A - R0 - gnd
+A - R1 - gnd
+B - R2 - A
+
+R3 serial
+gnd, A, B, C
+A - R0 - gnd
+A - R1 - gnd
+B - R2 - A
+C - R3 - B
+
+R4 parallel
+gnd, A, B, C
+A - R0 - gnd
+A - R1 - gnd
+B - R2 - A
+C - R3 - B
+C - R4 - gnd
+
+R5 parallel
+gnd, A, B, C
+A - R0 - gnd
+A - R1 - gnd
+B - R2 - A
+C - R3 - B
+C - R4 - gnd
+C - R5 - gnd
+
+R6 series
+gnd, A, B, C, D
+A - R0 - gnd
+A - R1 - gnd
+B - R2 - A
+C - R3 - B
+C - R4 - gnd
+C - R5 - gnd
+D - R6 - C
+
+//////////////////
+
+store: R0      => Rv
+merge: R1 \ Rv => Rv
+merge: R2 + Rv => Rv
+merge: R3 + Rv => Rv
+merge: R4 \ Rv => Rv
+merge: R5 \ Rv => Rv
+merge: R6 + Rv => Rv
+
+result: Rv
+
+
+// vim: ft=c
