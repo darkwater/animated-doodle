@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 
 // Return suffix for ordinal numbers
 static char* num_suffix(int num) {
