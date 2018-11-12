@@ -1,0 +1,36 @@
+digraph {
+    label="Maths program"
+
+    start                                   [label="Start", shape=box, style=rounded];
+    start -> input_from;
+
+    input_from                              [label="Select starting base", shape=parallelogram]
+    input_from -> input_to;
+
+    input_to                                [label="Select target base", shape=parallelogram]
+    input_to -> input_number;
+
+    input_number                            [label="Input number to convert", shape=parallelogram]
+    input_number -> do_setup;
+
+    do_setup                                [label="Set p pointer to start of string.\nSet x to 0.", shape=box];
+    do_setup -> do_step_1;
+
+    do_step_1                               [label="Multiply x by target base", shape=box];
+    do_step_1 -> do_step_2;
+
+    do_step_2                               [label="Parse digit pointed to by p", shape=box];
+    do_step_2 -> do_step_3;
+
+    do_step_3                               [label="Add to x", shape=box];
+    do_step_3 -> do_incr;
+
+    do_incr                                 [label="Increment p", shape=box];
+    do_incr -> logic_choice
+
+    logic_choice                            [label="Does p point to end of string?", shape=diamond];
+    logic_choice -> result                  [label="Yes"];
+    logic_choice:e -> do_step_1:e           [label="No"];
+
+    result                                  [label="Output converted number", shape=box, style=rounded];
+}

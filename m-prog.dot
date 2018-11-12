@@ -1,0 +1,40 @@
+digraph {
+    label="Maths program"
+
+    start                                   [label="Start", shape=box, style=rounded];
+    start -> input_choice;
+
+    input_choice                            [label="Select polynomial grade", shape=parallelogram]
+    input_choice -> logic_choice;
+
+    logic_choice                            [label="Which\ngrade?", shape=diamond];
+    logic_choice -> input_first_a           [label="First"];
+    logic_choice -> input_second_a          [label="Second"];
+
+    // First
+    input_first_a                           [label="Input value\nfor a", shape=parallelogram];
+    input_first_a -> input_first_b;
+
+    input_first_b                           [label="Input value\nfor b", shape=parallelogram];
+    input_first_b -> do_first_calculate;
+
+    do_first_calculate                      [label="Solve ax + b for x:\nx = -(b / a)", shape=box];
+    do_first_calculate -> result_first;
+
+    result_first                            [label="Output x", shape=box, style=rounded];
+
+    // Second
+    input_second_a                          [label="Input value\nfor a", shape=parallelogram];
+    input_second_a -> input_second_b;
+
+    input_second_b                          [label="Input value\nfor b", shape=parallelogram];
+    input_second_b -> input_second_c;
+
+    input_second_c                          [label="Input value\nfor c", shape=parallelogram];
+    input_second_c -> do_second_calculate;
+
+    do_second_calculate                     [label="Solve ax² + bx + c for x:\nx = (-b ± √(b*b - 4.0 * a * c)) / (2 * a)", shape=box];
+    do_second_calculate -> result_second;
+
+    result_second                           [label="Output x", shape=box, style=rounded];
+}

@@ -1,0 +1,57 @@
+digraph {
+    label="Strings program"
+
+    start                                   [label="Start", shape=box, style=rounded];
+    start -> input_choice;
+
+    input_choice                            [label="Select function", shape=parallelogram]
+    input_choice -> logic_choice;
+
+    logic_choice                            [label="Which\nfunction?", shape=diamond];
+    logic_choice -> input_palin             [label="Palindrome"];
+    logic_choice -> input_vowels            [label="Vowels"];
+
+    // Palindrome
+    input_palin                             [label="Input string\nto check", shape=parallelogram];
+    input_palin -> do_palin_init;
+
+    do_palin_init                           [label="Set a and b pointers\nto start and end of\ninput string, respectively", shape=box];
+    do_palin_init -> logic_compare;
+
+    logic_compare                           [label="Compare a value\nto b value", shape=box];
+    logic_compare -> result_palin_invalid   [label="Not equivalent"];
+    logic_compare -> do_palin_incr          [label="Equivalent"];
+
+    do_palin_incr                           [label="Increment a and\ndecrement b", shape=box];
+    do_palin_incr -> logic_palin_cond;
+
+    logic_palin_cond                        [label="b larger\nthan a?", shape=diamond];
+    logic_palin_cond -> result_palin_valid  [label="No"];
+    logic_palin_cond -> logic_compare       [label="Yes"];
+
+    result_palin_invalid                    [label="Output:\nNot a palindrome", shape=box, style=rounded];
+    result_palin_valid                      [label="Output:\nPalindrome",       shape=box, style=rounded];
+
+    // Vowels
+    input_vowels                            [label="Input string\nto transform", shape=parallelogram];
+    input_vowels -> do_vowel_init;
+
+    do_vowel_init                           [label="Set a pointer to start\nof input string", shape=box];
+    do_vowel_init -> logic_vowel_check;
+
+    logic_vowel_check                       [label="Does a point\nto vowel?", shape=diamond];
+    logic_vowel_check -> do_vowel_incr      [label="Yes"];
+    logic_vowel_check -> output_consonant   [label="No"];
+
+    output_consonant                        [label="Output a value", shape=box];
+    output_consonant -> do_vowel_incr;
+
+    do_vowel_incr                           [label="Increment a", shape=box];
+    do_vowel_incr -> logic_vowel_cond;
+
+    logic_vowel_cond                        [label="Does a point\nto end of\ninput string?", shape=diamond];
+    logic_vowel_cond -> result_vowel        [label="Yes"];
+    logic_vowel_cond -> logic_vowel_check   [label="No"];
+
+    result_vowel                            [label="Done", shape=box, style=rounded];
+}
