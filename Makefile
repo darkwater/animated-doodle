@@ -1,4 +1,4 @@
 CC=clang
 
 %: %.c %.h common.h
-	$(CC) -lm $< -o $@
+	$(CC) -std=c99 -lm -lcurses $< -o $@
